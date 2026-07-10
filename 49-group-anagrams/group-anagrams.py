@@ -1,15 +1,15 @@
 class Solution(object):
     def groupAnagrams(self, strs):
-        mp = defaultdict(list) # mapping char_count with list of anagrams
-        for s in strs:
-            count = [0]*26
+        mp = {}
+        for i in range (len(strs)):
+            sorted_character = sorted(strs[i])
+            join_str = "".join(sorted_character)
+            if join_str not in mp:
+                mp[join_str] = []
+            mp[join_str].append(strs[i])     
+        return list(mp.values())  
 
-            for c in s:
-                count[ord(c)-ord("a")] += 1 #ascii value a=80, to put in 0th pos we do a-a = 80-80
 
-            mp[tuple(count)].append(s)
-
-        return mp.values()    
 
 
 
