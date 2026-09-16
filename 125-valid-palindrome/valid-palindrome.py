@@ -1,17 +1,19 @@
-class Solution(object):
-    def isPalindrome(self, s):
-        c = ""
-        for char in s:
-            if char.isalnum():
-                c = c+char.lower()
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = s.lower()
+        s = s.replace(" ","")
+        s = re.sub('[^a-zA-Z0-9]', '', s)
+        
+        left = 0
+        right = len(s) - 1
 
-        i=0
-        j= len(c) - 1
-        while i<j:
-            if c[i] != c[j]:
+        while left<right:
+            if s[left] != s[right]:
                 return False
-            i+=1
-            j-=1    
+            else:
+                left += 1
+                right -= 1
 
-        return True
+        return True            
+
         
